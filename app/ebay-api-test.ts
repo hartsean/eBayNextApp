@@ -1,10 +1,12 @@
 import eBayApi from 'ebay-api';
+import 'dotenv/config'
 // or:
 // const eBayApi = require('ebay-api')
+let env = process.env["NODE_ENV"];
 
 const eBay = new eBayApi({
-  appId: '-- also called Client ID --',
-  certId: '-- also called Client Secret --',
+  appId: process.env.EBAY_APP_ID,
+  certId: process.env.EBAY_SECRET_KEY,
   sandbox: false
 });
 
