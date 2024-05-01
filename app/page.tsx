@@ -33,7 +33,8 @@ export default function Home() {
         <div className="book-description">{item.shortDescription}</div>
         <div className="book-price-value">{item.price.value}</div>
         <div className="book-price-currency">{item.price.currency}</div>
-
+        <div className="book-image-full"><img src={item.image.imageUrl}></img></div>
+        {/* <div className="book-image-thumb"><img src={item.image.imageUrl}></img></div> */}
       </div>
     </main>
   );
