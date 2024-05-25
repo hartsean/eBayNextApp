@@ -1,3 +1,4 @@
+'use client'
 /*
 
 TODO:
@@ -8,25 +9,37 @@ https://api.ebay.com/sell/inventory/v1/inventory_item?limit=2&offset=0
 
 
 */
-
+import sample_item from "./item_sample.json"
 import eBayApi from 'ebay-api';
 import 'dotenv/config'
+import { useEffect, useState } from 'react';
 // or:
 // const eBayApi = require('ebay-api')
 
-const eBay = new eBayApi({
-  appId: process.env.EBAY_APP_ID,
-  certId: process.env.EBAY_CERT_ID,
-  sandbox: false
-});
+//move to backend, serverless components..
 
-const item = await eBay.buy.browse.getItem('v1|166720018589|0');
+// const eBay = new eBayApi({
+//   appId: process.env.EBAY_APP_ID,
+//   certId: process.env.EBAY_CERT_ID,
+//   sandbox: false
+// });
 
-console.log('typeof item', typeof item);
-console.log('data bitch', JSON.stringify(item, null, 2));
+
+// console.log('typeof item', typeof item);
+// console.log('data', JSON.stringify(item, null, 2));
 
 export default function Home() {
-  return (
+  
+  const [item, setItem] = useState<Record<string,any>>();
+  
+  useEffect(() => {
+    setTimeout(()=>setItem(sample_item), 2000)
+    // eBay.buy.browse.getItem('v1|166720018589|0').then(() => { console.log(item)
+    //  });
+  }, [])
+
+  return !item? null: (
+    
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <div className="book-title">{item.title}</div>
